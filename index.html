@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Weather APP</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather APP</title>
 
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://kit.fontawesome.com/1f2bd6a4f6.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <!-- NAV BAR WITH SEARCH CITY INPUT -->
-    <h1>WEATHER APP 2.0</h1>
-    <nav class="nav-bar">
-      <div class="input-box">
-        <form class="city-form" autocomplete="off">
-          <input type="text" name="name" id="name" class="search-input" placeholder="City name..." />
-          <button type="submit" class="btn">
-            <span class="blinker-text"> Search </span>
-          </button>
-        </form>
-      </div>
-    </nav>
+    <header>
+      <h1>WEATHER APP 2.0</h1>
+      <nav class="nav-bar">
+        <div class="input-box">
+          <form class="city-form" autocomplete="off">
+            <input type="text" name="name" id="name" class="search-input" placeholder="City name..." />
+            <button type="submit" class="btn">
+              <span class="blinker-text"> <i class="fa-solid fa-magnifying-glass search-icon"></i> </span>
+            </button>
+          </form>
+        </div>
+      </nav>
+    </header>
 
-    <!-- CONTAINER WHERE THE WEATHER DETAILS WILL BE DISPLAYED -->
-    <div class="container">
-      <div class="weather-data">
-        <div class="city-panel">
-          <p class="city"></p>
-          <p class="state"></p>
-          <p class="date"></p>
-          <div class="icon">
-            <img src="" class="weather-icon" />
-            <p class="weather-description"></p>
-          </div>
-        </div>
-        <div class="thin-line"></div>
-        <div class="temp-panel">
-          <p class="temperature"></p>
-          <p class="min-max"></p>
-        </div>
+    <main>
+      <!-- CONTAINER WHERE THE WEATHER DETAILS WILL BE DISPLAYED -->
+      <div class="container">
+        <section class="weather-data">
+          <article class="city-panel">
+            <p class="city"></p>
+            <p class="state"></p>
+            <p class="date"></p>
+            <div class="icon">
+              <img src="" class="weather-icon" />
+              <p class="weather-description"></p>
+            </div>
+          </article>
+          <div class="thin-line"></div>
+          <article class="temp-panel">
+            <p class="temperature"></p>
+            <p class="min-max"></p>
+          </article>
+        </section>
       </div>
-    </div>
+    </main>
 
     <!-- <footer>
       <h1>FOOTER HERE</h1>
