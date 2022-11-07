@@ -17,7 +17,8 @@
       <nav class="nav-bar">
         <div class="input-box">
           <form class="city-form" autocomplete="off">
-            <input type="text" name="name" id="name" class="search-input" placeholder="City name..." />
+            <input type="text" name="name" id="name" class="search-input" placeholder="Ex. London, GB" />
+
             <button type="submit" class="btn">
               <span class="blinker-text"> <i class="fa-solid fa-magnifying-glass search-icon"></i> </span>
             </button>
@@ -28,7 +29,7 @@
 
     <main>
       <!-- CONTAINER WHERE THE WEATHER DETAILS WILL BE DISPLAYED -->
-      <div class="container">
+      <div class="container display-none">
         <section class="weather-data">
           <article class="city-panel">
             <p class="city"></p>
@@ -45,6 +46,8 @@
             <p class="min-max"></p>
           </article>
         </section>
+
+        <div class="not-found display-none">City not found, sorry ¯\_( ͠° ͟ʖ ͠°)_/¯</div>
       </div>
     </main>
 

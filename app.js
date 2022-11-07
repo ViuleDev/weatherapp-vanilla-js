@@ -23,6 +23,7 @@ const cityForm = document.querySelector(".city-form");
 
 // Ref to DOM Elements that display weather info
 const container = document.querySelector(".container");
+const weatherBox = document.querySelector(".weather-data");
 const cityName = document.querySelector(".city");
 const stateName = document.querySelector(".state");
 const currentDate = document.querySelector(".date");
@@ -30,9 +31,7 @@ const weatherIcon = document.querySelector(".weather-icon");
 const weatherDescription = document.querySelector(".weather-description");
 const currentTemp = document.querySelector(".temperature");
 const minMaxTemp = document.querySelector(".min-max");
-
-// Set the container to hide when we load the
-container.style.display = "none";
+const notFoundMsg = document.querySelector(".not-found");
 
 // API Variables/Constants
 const API_KEY = "37f2111fdeb0f75bcb28fbd30c3c518c";
@@ -43,26 +42,41 @@ const API_KEY = "37f2111fdeb0f75bcb28fbd30c3c518c";
 const searchCity = (userInput) => {
   const GET_COORDINATES_API = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput}&appid=${API_KEY}`;
 
+  // Hides container each time we search for a new city
+  container.classList.add("display-none");
+
   // Reset foundCity array
   foundCity.length = 0;
 
   fetch(GET_COORDINATES_API)
     .then((res) => res.json())
     .then((data) => {
-      data.forEach((city) => {
-        // Fill the foundCity array with what we found
-        foundCity.push(city);
-        console.log(foundCity);
+      // If we find a city we call getWeather and fetch weather info.
+      if (data.length > 0) {
+        data.forEach((city) => {
+          // Fill the foundCity array with what we found
+          foundCity.push(city);
+          console.log(foundCity);
 
-        // Call the function that displays the cities pills
-        getWeather(foundCity);
-      });
+          // Call the function that displays the cities pills
+          getWeather(foundCity);
+        });
+      }
+      // If we can't find a city we display the not found message
+      else {
+        container.classList.remove("display-none");
+        weatherBox.classList.add("display-none");
+        notFoundMsg.classList.remove("display-none");
+      }
     })
     .catch((err) => console.log(err));
 };
 
 const getWeather = (foundCity) => {
   const CITY_WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${foundCity[0].lat}&lon=${foundCity[0].lon}&appid=${API_KEY}&units=metric`;
+
+  weatherBox.classList.remove("display-none");
+  notFoundMsg.classList.add("display-none");
 
   fetch(CITY_WEATHER_API)
     .then((res) => res.json())
