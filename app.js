@@ -34,6 +34,7 @@ const weatherDescription = document.querySelector(".weather-description");
 const currentTemp = document.querySelector(".temperature");
 const minMaxTemp = document.querySelector(".min-max");
 
+// Set the container to hide when we load the
 container.style.display = "none";
 
 // API Variables/Constants
@@ -42,8 +43,8 @@ const API_KEY = "37f2111fdeb0f75bcb28fbd30c3c518c";
 // FUNCTIONS
 
 // We search for the coordinates based on the user input
-const findCities = (userInput) => {
-  const GET_COORDINATES_API = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput}&limit=5&appid=${API_KEY}`;
+const searchCity = (userInput) => {
+  const GET_COORDINATES_API = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput}&appid=${API_KEY}`;
 
   // Reset foundCities array
   foundCities.length = 0;
@@ -66,13 +67,13 @@ const findCities = (userInput) => {
 
 // Here we display the found cities pills so the user can pick
 const displayCities = (foundCities) => {
-  let displayCitiesText = "";
+  let cityPills = "";
 
   for (let city of foundCities) {
-    displayCitiesText += `<span class="city-pill" data-lat="${city.lat}" data-lon="${city.lon}" data-state="${city.state}"> ${city.name}, ${city.country} </span>`;
+    cityPills += `<span class="city-pill" data-lat="${city.lat}" data-lon="${city.lon}" data-state="${city.state}"> ${city.name}, ${city.country} </span>`;
   }
 
-  foundCitiesBox.innerHTML = displayCitiesText;
+  foundCitiesBox.innerHTML = cityPills;
 };
 
 // We get the weather of the city we picked!
@@ -97,16 +98,17 @@ const displayWeather = (currentCityWeather) => {
   container.style.display = "block";
 
   let date = new Date();
-  let formattedData = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+  let formattedDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 
   cityName.innerHTML = `${currentCityWeather.name}, ${currentCityWeather.sys.country}`;
-  currentDate.innerHTML = formattedData;
+  currentDate.innerHTML = formattedDate;
   weatherIcon.src = `https://openweathermap.org/img/wn/${currentCityWeather.weather[0].icon}@2x.png`;
   weatherDescription.innerHTML = currentCityWeather.weather[0].description;
   currentTemp.innerHTML = Math.trunc(currentCityWeather.main.temp) + "&#8451;";
   minMaxTemp.innerHTML = `${Math.trunc(currentCityWeather.main.temp_max)}&#176;/${Math.trunc(currentCityWeather.main.temp_min)}&#176;`;
   stateName.innerHTML = "";
 
+  // Some item do not have a .state property, hence we use this guard close.
   if (currentCityWeather.state !== "undefined") {
     stateName.innerHTML = currentCityWeather.state;
   }
@@ -120,7 +122,7 @@ cityForm.addEventListener("submit", (event) => {
   // NEED TO ADD A REGEX PATTERN TO MAKE SURE THERE ARE NO NUMBERS IN THE INPUT
 
   // Calling the geocoding API
-  findCities(inputValue);
+  searchCity(inputValue);
   cityForm.reset();
 });
 
