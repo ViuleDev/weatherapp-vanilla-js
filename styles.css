@@ -89,7 +89,7 @@ input:-internal-autofill-selected {
   margin: 2rem auto;
   padding: 3rem 2rem;
   background-color: rgba(255, 255, 255, 0.6);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
   border-radius: 20px;
 }
 
@@ -104,6 +104,18 @@ h1 {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+sub {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.max {
+  color: crimson;
+}
+.min {
+  color: steelblue;
 }
 
 .city-panel,
