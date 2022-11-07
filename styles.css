@@ -155,8 +155,9 @@ footer {
   .thin-line {
     height: 1px;
     width: 90%;
-    margin: 1rem auto;
+    margin: 2rem auto;
     background-color: aliceblue;
+    animation: blinker 3s linear infinite;
   }
 
   .city-panel,
