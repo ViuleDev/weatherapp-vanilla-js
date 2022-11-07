@@ -1,13 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 html {
   min-height: 100%;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: aliceblue;
   background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
 }
@@ -98,17 +101,36 @@ input:-internal-autofill-selected {
 
 /* MAIN WEATHER CONTAINER */
 .container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 2rem auto;
-  padding: 5rem 2rem;
+  padding: 3rem 2rem;
   background-color: rgba(255, 255, 255, 0.6);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
   border-radius: 5px;
 }
 
 .weather-data {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
+}
+
+.city-panel,
+.temp-panel {
+  width: 50%;
+}
+
+.city-panel {
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.temp-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 100;
 }
 
 /* FOOTER */

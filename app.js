@@ -70,7 +70,7 @@ const displayCities = (foundCities) => {
   let cityPills = "";
 
   for (let city of foundCities) {
-    cityPills += `<span class="city-pill" data-lat="${city.lat}" data-lon="${city.lon}" data-state="${city.state}"> ${city.name}, ${city.country} </span>`;
+    cityPills += `<span class="city-pill" data-lat="${city.lat}" data-lon="${city.lon}" data-state="${city.state}" data-city="${city.name}"> ${city.name}, ${city.country} </span>`;
   }
 
   foundCitiesBox.innerHTML = cityPills;
@@ -78,7 +78,7 @@ const displayCities = (foundCities) => {
 
 // We get the weather of the city we picked!
 
-const getWeather = (lat, lon, state) => {
+const getWeather = (lat, lon, city, state) => {
   const CITY_WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
   // Reset currentCityWeather array
@@ -87,7 +87,7 @@ const getWeather = (lat, lon, state) => {
   fetch(CITY_WEATHER_API)
     .then((res) => res.json())
     .then((data) => {
-      currentCityWeather = { ...data, state: state };
+      currentCityWeather = { ...data, cityName: city, state: state };
       displayWeather(currentCityWeather);
     })
     .catch((err) => console.log(err));
@@ -100,11 +100,11 @@ const displayWeather = (currentCityWeather) => {
   let date = new Date();
   let formattedDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 
-  cityName.innerHTML = `${currentCityWeather.name}, ${currentCityWeather.sys.country}`;
-  currentDate.innerHTML = formattedDate;
+  cityName.innerHTML = `${currentCityWeather.cityName}, ${currentCityWeather.sys.country}`;
+  //currentDate.innerHTML = formattedDate;
   weatherIcon.src = `https://openweathermap.org/img/wn/${currentCityWeather.weather[0].icon}@2x.png`;
-  weatherDescription.innerHTML = currentCityWeather.weather[0].description;
-  currentTemp.innerHTML = Math.trunc(currentCityWeather.main.temp) + "&#8451;";
+  weatherDescription.innerHTML = currentCityWeather.weather[0].description.toUpperCase();
+  currentTemp.innerHTML = Math.trunc(currentCityWeather.main.temp) + "&#176;C";
   minMaxTemp.innerHTML = `${Math.trunc(currentCityWeather.main.temp_max)}&#176;/${Math.trunc(currentCityWeather.main.temp_min)}&#176;`;
   stateName.innerHTML = "";
 
@@ -131,8 +131,9 @@ foundCitiesBox.addEventListener("click", (event) => {
   if (event.target.localName === "span") {
     let latitude = event.target.dataset.lat;
     let longitude = event.target.dataset.lon;
+    let city = event.target.dataset.city;
     let state = event.target.dataset.state;
 
-    getWeather(latitude, longitude, state);
+    getWeather(latitude, longitude, city, state);
   }
 });
