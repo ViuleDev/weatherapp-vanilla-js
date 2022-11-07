@@ -136,6 +136,14 @@ sub {
   font-weight: 100;
 }
 
+.weather-icon {
+  animation: blinker 5s linear infinite;
+}
+
+.weather-description {
+  text-transform: capitalize;
+}
+
 /* FOOTER */
 /* FOOTER */
 /* FOOTER */

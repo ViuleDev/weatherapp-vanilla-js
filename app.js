@@ -83,7 +83,7 @@ const displayWeather = (currentCityWeather) => {
   cityName.innerHTML = `${currentCityWeather.cityName}, ${currentCityWeather.sys.country}`;
   //currentDate.innerHTML = formattedDate;
   weatherIcon.src = `https://openweathermap.org/img/wn/${currentCityWeather.weather[0].icon}@2x.png`;
-  weatherDescription.innerHTML = currentCityWeather.weather[0].description.toUpperCase();
+  weatherDescription.innerHTML = currentCityWeather.weather[0].description;
   currentTemp.innerHTML = Math.trunc(currentCityWeather.main.temp) + "&#176;C";
   minMaxTemp.innerHTML = `${Math.trunc(currentCityWeather.main.temp_max)}&#176;<sub class="max">MAX</sub> ${Math.trunc(currentCityWeather.main.temp_min)}&#176;<sub class="min">MIN</sub>`;
   stateName.innerHTML = "";
