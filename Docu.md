@@ -5,3 +5,4 @@
 ### To do
 
 - Implement "search by ZIP code" feature
+- Implement "spinner animation" while loading data
