@@ -13,16 +13,13 @@
 
 // Global Variables
 // The array that contains the cities we found with our API call.
-const foundCities = [];
+const foundCity = [];
 let currentCityWeather = null;
 
 // DOM References & DOM Manipulation
 
 // City search input box
 const cityForm = document.querySelector(".city-form");
-
-// Div where we display the different city found in the geolocation API call
-const foundCitiesBox = document.querySelector(".found-cities");
 
 // Ref to DOM Elements that display weather info
 const container = document.querySelector(".container");
@@ -46,48 +43,31 @@ const API_KEY = "37f2111fdeb0f75bcb28fbd30c3c518c";
 const searchCity = (userInput) => {
   const GET_COORDINATES_API = `https://api.openweathermap.org/geo/1.0/direct?q=${userInput}&appid=${API_KEY}`;
 
-  // Reset foundCities array
-  foundCities.length = 0;
+  // Reset foundCity array
+  foundCity.length = 0;
 
   fetch(GET_COORDINATES_API)
     .then((res) => res.json())
     .then((data) => {
       data.forEach((city) => {
-        //console.log(city.name, city.state, city.country);
-
-        // Fill the foundCities array with what we found
-        foundCities.push(city);
+        // Fill the foundCity array with what we found
+        foundCity.push(city);
+        console.log(foundCity);
 
         // Call the function that displays the cities pills
-        displayCities(foundCities);
+        getWeather(foundCity);
       });
     })
     .catch((err) => console.log(err));
 };
 
-// Here we display the found cities pills so the user can pick
-const displayCities = (foundCities) => {
-  let cityPills = "";
-
-  for (let city of foundCities) {
-    cityPills += `<span class="city-pill" data-lat="${city.lat}" data-lon="${city.lon}" data-state="${city.state}" data-city="${city.name}"> ${city.name}, ${city.country} </span>`;
-  }
-
-  foundCitiesBox.innerHTML = cityPills;
-};
-
-// We get the weather of the city we picked!
-
-const getWeather = (lat, lon, city, state) => {
-  const CITY_WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-
-  // Reset currentCityWeather array
-  //currentCityWeather.length = 0;
+const getWeather = (foundCity) => {
+  const CITY_WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${foundCity[0].lat}&lon=${foundCity[0].lon}&appid=${API_KEY}&units=metric`;
 
   fetch(CITY_WEATHER_API)
     .then((res) => res.json())
     .then((data) => {
-      currentCityWeather = { ...data, cityName: city, state: state };
+      currentCityWeather = { ...data, cityName: foundCity[0].name, state: foundCity[0].state };
       displayWeather(currentCityWeather);
     })
     .catch((err) => console.log(err));
@@ -124,16 +104,4 @@ cityForm.addEventListener("submit", (event) => {
   // Calling the geocoding API
   searchCity(inputValue);
   cityForm.reset();
-});
-
-foundCitiesBox.addEventListener("click", (event) => {
-  // We only do something if what we click is a span tag (city pill)
-  if (event.target.localName === "span") {
-    let latitude = event.target.dataset.lat;
-    let longitude = event.target.dataset.lon;
-    let city = event.target.dataset.city;
-    let state = event.target.dataset.state;
-
-    getWeather(latitude, longitude, city, state);
-  }
 });
