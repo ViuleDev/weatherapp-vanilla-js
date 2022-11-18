@@ -7,34 +7,45 @@
 }
 html {
   min-height: 100%;
+  /* background: url("./img/pexels-andre-furtado-1162251.jpg") center/cover; */
+  background: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
 }
 
 body {
   font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: aliceblue;
-  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
 }
 
 /* NAVBAR WITH SEARCH INPUT */
 
 .nav-bar {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+  margin: 10px auto;
   max-width: 800px;
-  margin: 2rem auto;
-  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
 }
 
-h1 {
-  padding: 2rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+.nav-logo {
+  width: 46px;
+}
+
+.nav-title {
+  margin-left: auto;
+}
+
+.search-bar {
+  margin: 2rem auto;
   text-align: center;
-  font-size: 4rem;
 }
 
 .search-input {
   border-radius: 50px;
   width: 200px;
   padding: 20px 20px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   border: none;
   outline: none;
   color: aliceblue;
@@ -42,7 +53,7 @@ h1 {
 }
 
 .not-found {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
   font-weight: 200;
 }
@@ -68,7 +79,7 @@ input:-internal-autofill-selected {
   padding: 20px;
   text-transform: uppercase;
   color: aliceblue;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   border: none;
   outline: none;
   cursor: pointer;
@@ -107,15 +118,8 @@ input:-internal-autofill-selected {
   margin: 2rem auto;
   padding: 3rem 2rem;
   background-color: rgba(255, 255, 255, 0.6);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   border-radius: 20px;
-}
-
-h1 {
-  padding: 1rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-  text-align: center;
-  font-size: 3rem;
 }
 
 .weather-data {

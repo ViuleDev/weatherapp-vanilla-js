@@ -22,6 +22,7 @@ let currentCityWeather = null;
 const cityForm = document.querySelector(".city-form");
 
 // Ref to DOM Elements that display weather info
+const htmlContainer = document.querySelector("html");
 const container = document.querySelector(".container");
 const weatherBox = document.querySelector(".weather-data");
 const cityName = document.querySelector(".city");
@@ -94,17 +95,93 @@ const displayWeather = (currentCityWeather) => {
   let date = new Date();
   let formattedDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 
+  // Displays City name and Country
   cityName.innerHTML = `${currentCityWeather.cityName}, ${currentCityWeather.sys.country}`;
+
+  // Displays current date
   //currentDate.innerHTML = formattedDate;
+
+  // Displays weather icon
   weatherIcon.src = `https://openweathermap.org/img/wn/${currentCityWeather.weather[0].icon}@2x.png`;
+
+  // Switch Statement to determine background picture based on icon code.
+  switch (currentCityWeather.weather[0].icon) {
+    // Day time backgrounds
+    case "01d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/01d.jpg') center/cover";
+      break;
+    case "02d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/02d.jpg') center/cover";
+      break;
+    case "03d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/03d.jpg') center/cover";
+      break;
+    case "04d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/04d.jpg') center/cover";
+      break;
+    case "09d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/09d.jpg') center/cover";
+      break;
+    case "10d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/10d.jpg') center/cover";
+      break;
+    case "11d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/11d.jpg') center/cover";
+      break;
+    case "13d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/13d.jpg') center/cover";
+      break;
+    case "50d":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/50d.jpg') center/cover";
+      break;
+
+    // Night time backgrounds
+    case "01n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/01n.jpg') center/cover";
+      break;
+    case "02n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/02n.jpg') center/cover";
+      break;
+    case "03n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/03n.jpg') center/cover";
+      break;
+    case "04n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/04n.jpg') center/cover";
+      break;
+    case "09n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/09n.jpg') center/cover";
+      break;
+    case "10n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/10n.jpg') center/cover";
+      break;
+    case "11n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/11n.jpg') center/cover";
+      break;
+    case "13n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/13n.jpg') center/cover";
+      break;
+    case "50n":
+      htmlContainer.style.background = "linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,0.2)), url('./img/bg/50n.jpg') center/cover";
+      break;
+
+    default:
+      htmlContainer.style.background = "linear-gradient(to top, #5ee7df 0%, #b490ca 100%)";
+  }
+
+  // Displays weather description
   weatherDescription.innerHTML = currentCityWeather.weather[0].description;
+
+  // Displays current temperature
   currentTemp.innerHTML = Math.trunc(currentCityWeather.main.temp) + "&#176;C";
+
+  // Displays min/max temperature
   minMaxTemp.innerHTML = `${Math.trunc(currentCityWeather.main.temp_max)}&#176;<sub class="max">MAX</sub> ${Math.trunc(currentCityWeather.main.temp_min)}&#176;<sub class="min">MIN</sub>`;
-  stateName.innerHTML = "";
 
   // Some item do not have a .state property, hence we use this guard close.
-  if (currentCityWeather.state !== "undefined") {
+  if (currentCityWeather.state !== undefined) {
     stateName.innerHTML = currentCityWeather.state;
+  } else {
+    stateName.innerHTML = "";
   }
 };
 
