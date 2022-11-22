@@ -201,7 +201,7 @@ footer {
 /* MEDIA QUERIES */
 /* MEDIA QUERIES */
 
-@media (max-width: 650px) {
+@media (max-width: 650px) or (orientation: landscape) {
   .container {
     max-width: 325px;
     padding: 3rem 0;
