@@ -60,6 +60,7 @@ body {
 .instructions {
   position: absolute;
   font-weight: 200;
+  font-size: 0.8rem;
   padding: 5px 20px;
   color: white;
   animation: neon 1s infinite ease-in-out alternate;
@@ -235,6 +236,10 @@ footer {
 @media (max-width: 600px) {
   .nav-bar {
     max-width: 400px;
+  }
+
+  .search-input {
+    width: 150px;
   }
 }
 @media (max-width: 400px) and (orientation: landscape) {
