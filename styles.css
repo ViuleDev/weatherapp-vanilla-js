@@ -253,7 +253,7 @@ footer {
   .container {
     max-width: 325px;
     padding: 3rem 0;
-    margin-bottom: 10rem;
+    margin: 10rem 0;
   }
 
   .weather-data {
