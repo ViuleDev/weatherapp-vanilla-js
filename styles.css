@@ -9,6 +9,7 @@ html {
   min-height: 100%;
   /* background: url("./img/pexels-andre-furtado-1162251.jpg") center/cover; */
   background: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+  position: relative;
 }
 
 body {
@@ -174,7 +175,7 @@ sub {
 /* FOOTER */
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -202,8 +203,9 @@ footer {
 
 @media (max-width: 650px) {
   .container {
-    max-width: 350px;
+    max-width: 325px;
     padding: 3rem 0;
+    margin-bottom: 10rem;
   }
 
   .weather-data {
