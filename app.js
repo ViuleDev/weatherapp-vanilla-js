@@ -33,6 +33,7 @@ const weatherDescription = document.querySelector(".weather-description");
 const currentTemp = document.querySelector(".temperature");
 const minMaxTemp = document.querySelector(".min-max");
 const notFoundMsg = document.querySelector(".not-found");
+const instructions = document.querySelector(".instructions");
 
 // API Variables/Constants
 const API_KEY = "37f2111fdeb0f75bcb28fbd30c3c518c";
@@ -190,9 +191,19 @@ cityForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   let inputValue = cityForm.name.value.trim().toLowerCase();
-  // NEED TO ADD A REGEX PATTERN TO MAKE SURE THERE ARE NO NUMBERS IN THE INPUT
+  let isValid = onlyLettersAndSpaces(inputValue);
+
+  if (isValid) {
+    searchCity(inputValue);
+    instructions.classList.add("display-none");
+    cityForm.reset();
+  } else {
+    instructions.classList.remove("display-none");
+  }
 
   // Calling the geocoding API
-  searchCity(inputValue);
-  cityForm.reset();
 });
+
+function onlyLettersAndSpaces(str) {
+  return /^[A-Za-z,\s]*$/.test(str);
+}
