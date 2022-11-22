@@ -229,7 +229,7 @@ footer {
     max-width: 800px;
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 800px) and (orientation: landscape) {
   .nav-bar {
     max-width: 600px;
   }

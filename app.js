@@ -189,10 +189,10 @@ const displayWeather = (currentCityWeather) => {
 // DOM Events
 cityForm.addEventListener("submit", (event) => {
   event.preventDefault();
-
+  
   let inputValue = cityForm.name.value.trim().toLowerCase();
   let isValid = onlyLettersAndSpaces(inputValue);
-
+  
   if (isValid) {
     searchCity(inputValue);
     instructions.classList.add("display-none");
